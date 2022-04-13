@@ -2,11 +2,17 @@
 
 namespace App\Models;
 
+use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * App\Models\Ship
+ *
+ * @mixin Eloquent
+ */
 class Ship extends Model
 {
     use HasFactory, SoftDeletes;
