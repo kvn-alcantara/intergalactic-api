@@ -2,6 +2,12 @@
     "name": "kvn-alcantara/intergalactic-api",
     "type": "project",
     "description": "Application to manage the transport fleet of goods through the galaxy.",
+    "authors": [
+        {
+            "name": "Kevin de Lima Alcantara",
+            "role": "Developer"
+        }
+    ],
     "license": "MIT",
     "require": {
         "php": "^8.0.2",

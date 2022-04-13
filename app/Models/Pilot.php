@@ -31,6 +31,7 @@ class Pilot extends Model
         'last_name',
         'age',
         'credits',
+        'certification',
     ];
 
     /**

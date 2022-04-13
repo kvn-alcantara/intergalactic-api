@@ -26,8 +26,9 @@ class StorePilotRequest extends FormRequest
         return [
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'age' => 'required|digits_between:18,65',
+            'age' => 'required|numeric|min:18|max:65',
             'credits' => 'sometimes|required|numeric',
+            'certification' => 'required|numeric|digits:7',
         ];
     }
 }

@@ -26,8 +26,9 @@ class UpdatePilotRequest extends FormRequest
         return [
             'first_name' => 'sometimes|required|string|max:255',
             'last_name' => 'sometimes|required|string|max:255',
-            'age' => 'sometimes|required|digits_between:18,65',
-            'credits' => 'sometimes|sometimes|required|numeric',
+            'age' => 'sometimes|required|numeric|min:18|max:65',
+            'credits' => 'sometimes|required|numeric',
+            'certification' => 'sometimes|required|numeric|digits:7',
         ];
     }
 }
