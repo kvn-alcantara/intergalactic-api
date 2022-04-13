@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PilotResource extends JsonResource
+class ShipResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,13 +16,12 @@ class PilotResource extends JsonResource
     public function toArray($request): array
     {
         return [
-            'first_name' => $this->first_name,
-            'last_name' => $this->last_name,
-            'age' => $this->age,
-            'credits' => $this->credits,
+            'fuel_capacity' => $this->fuel_capacity,
+            'fuel_level' => $this->fuel_level,
+            'weight_capacity' => $this->weight_capacity,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'ship' => new ShipResource($this->whenLoaded('ship')),
+            'pilot' => new PilotResource($this->whenLoaded('pilot')),
         ];
     }
 }

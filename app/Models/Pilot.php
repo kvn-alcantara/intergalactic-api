@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Pilot extends Model
@@ -58,6 +59,14 @@ class Pilot extends Model
             get: fn ($value) => ucfirst($value),
             set: fn ($value) => strtolower($value),
         );
+    }
+
+    /**
+     * Get the ship associated with the pilot.
+     */
+    public function ship(): HasOne
+    {
+        return $this->hasOne(Ship::class);
     }
 
     /**

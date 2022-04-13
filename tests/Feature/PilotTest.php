@@ -24,7 +24,14 @@ class PilotTest extends TestCase
         $response = $this->getJson(route('pilots.index'));
 
         $response
-            ->assertOk();
+            ->assertOk()
+            ->assertJsonStructure([
+                'data' => [
+                    '*' => [
+                        'ship',
+                    ]
+                ]
+            ]);
     }
 
     public function test_calling_pilots_gets_an_error_if_unauthenticated()
@@ -47,7 +54,12 @@ class PilotTest extends TestCase
         $response = $this->getJson(route('pilots.show', $pilot));
 
         $response
-            ->assertOk();
+            ->assertOk()
+            ->assertJsonStructure([
+                'data' => [
+                    'ship',
+                ]
+            ]);
     }
 
     public function test_calling_specific_pilot_gets_an_error_if_unauthenticated()
@@ -123,11 +135,16 @@ class PilotTest extends TestCase
             'credits' => 150,
         ];
 
-        $response = $this->putJson(route('pilots.update', $pilot), $data)->dump();
+        $response = $this->putJson(route('pilots.update', $pilot), $data);
 
         $response
             ->assertValid()
-            ->assertOk();
+            ->assertOk()
+            ->assertJsonStructure([
+                'data' => [
+                    'ship',
+                ]
+            ]);
     }
 
     public function test_updating_a_pilot_gets_an_error_if_fields_are_invalid()

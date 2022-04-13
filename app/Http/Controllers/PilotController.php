@@ -30,7 +30,7 @@ class PilotController extends Controller
      */
     public function index(): PilotCollection
     {
-        $pilots = Pilot::paginate();
+        $pilots = Pilot::with('ship')->paginate();
 
         return new PilotCollection($pilots);
     }
@@ -45,6 +45,8 @@ class PilotController extends Controller
     {
         $pilot = Pilot::create($request->validated());
 
+        $pilot->loadMissing('ship');
+
         return new PilotResource($pilot);
     }
 
@@ -56,6 +58,8 @@ class PilotController extends Controller
      */
     public function show(Pilot $pilot): PilotResource
     {
+        $pilot->loadMissing('ship');
+
         return new PilotResource($pilot);
     }
 
@@ -69,6 +73,8 @@ class PilotController extends Controller
     public function update(UpdatePilotRequest $request, Pilot $pilot): PilotResource
     {
         $pilot->update($request->validated());
+
+        $pilot->loadMissing('ship');
 
         return new PilotResource($pilot);
     }
