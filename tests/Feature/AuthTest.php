@@ -18,7 +18,7 @@ class AuthTest extends TestCase
 
         $data = [
             'email' => $user->email,
-            'password' => $user->password,
+            'password' => 'secret',
         ];
 
         $response = $this->postJson(route('auth.login'), $data);
@@ -29,8 +29,6 @@ class AuthTest extends TestCase
             ->assertJsonStructure([
                 'access_token',
             ]);
-
-        $this->assertAuthenticated();
     }
 
     public function test_cannot_login_with_incorrect_credentials()
@@ -54,7 +52,7 @@ class AuthTest extends TestCase
             'password_confirmation' => 'secret',
         ];
 
-        $response = $this->postJson(route('auth.register'), $data)->dump();
+        $response = $this->postJson(route('auth.register'), $data);
 
         $response
             ->assertValid()
@@ -74,7 +72,7 @@ class AuthTest extends TestCase
             'password' => 'secret',
         ];
 
-        $response = $this->postJson(route('auth.register'), $data)->dump();
+        $response = $this->postJson(route('auth.register'), $data);
 
         $response
             ->assertInvalid(['email', 'password'])
